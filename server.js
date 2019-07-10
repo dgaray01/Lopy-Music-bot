@@ -31,24 +31,7 @@ const Idiot = require("idiotic-api");
 client.API = new Idiot.Client("o5w3W99vRDOO7eEcXapd", { dev: true });
 const db = require ('megadb')
 const ms = require("ms")
-/*j!setpresence j!ayuda | JaponNow
-client.on("ready", () => {
-  let hola = ["j!ayuda |JaponNow", "🏯|JaponNow.me","🔧|Nuevas cosas","j!help |JaponNow"]
-let random = Math.floor((Math.random() * hola.length))
-let hola2 = hola[random];
 
-setInterval(function () {
- client.user.setPresence( {
-        game: {
-            name: `${hola2}`,
-            type: "STREAMING",
-          url: 'https://www.twitch.tv/yopandagames'
-        }
-})
-}, 10000)
-  console.log(`Estoy listo!, conectado en ${client.guilds.size} servidores y  ${client.users.size} usuarios`);
-});
-*/
 
 
 
@@ -327,7 +310,7 @@ client.on('message', async msg => {
             if (prefix_db.tiene(`${msg.guild.id}`)) {
                 prefix = await prefix_db.obtener(`${msg.guild.id}`)
             } else {
-                prefix = "s!"
+                prefix = process.env.PREFIX
             }
 
             if (!msg.guild) return;
@@ -918,7 +901,7 @@ client.on('message', async (message) => {
     if(prefix_db.tiene(`${message.guild.id}`)) {
     prefix = await prefix_db.obtener(`${message.guild.id}`)  
     }else{
-      prefix = "s!"
+      prefix = process.env.PREFIX
     }
 
   if (!message.guild) return;
